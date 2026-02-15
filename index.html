@@ -1,1 +1,218 @@
-index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>INFAMOUS STORE | Official</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --cyan: #00f3ff; --green: #25d366; --red: #ff1f57; --panel: #0f0f11; }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background: #000; color: white; overflow-x: hidden; padding-bottom: 90px; }
+
+        /* --- HERO & WHATSAPP --- */
+        .welcome-hero { padding: 40px 20px 30px; text-align: center; background: radial-gradient(circle at top, rgba(0, 243, 255, 0.15) 0%, transparent 70%); }
+        .welcome-text { font-family: 'Orbitron'; font-size: 1.8rem; color: var(--cyan); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; }
+        .whatsapp-join { display: inline-flex; align-items: center; gap: 10px; background: rgba(37, 211, 102, 0.1); border: 1px solid var(--green); color: var(--green); padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 900; font-size: 12px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+
+        /* --- FEEDBACK SECTION --- */
+        .feedback-title { font-family: 'Orbitron'; font-size: 10px; color: #444; letter-spacing: 2px; margin: 25px 0 10px; text-align: center; }
+        .feedback-scroll { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; }
+        .review-card { min-width: 220px; background: #0a0a0c; border: 1px solid #1a1a1c; padding: 15px; border-radius: 18px; }
+        .rev-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .rev-name { font-size: 11px; font-weight: 900; color: #eee; display: flex; align-items: center; gap: 4px; }
+        .rev-stars { color: #ffb800; font-size: 10px; }
+        .rev-text { font-size: 11px; color: #777; line-height: 1.4; font-style: italic; }
+
+        /* --- UI COMPONENTS --- */
+        input { width: 100%; padding: 18px; background: #111 !important; border: 2px solid #222; border-radius: 15px; color: var(--cyan) !important; -webkit-text-fill-color: var(--cyan) !important; font-weight: 900; font-size: 1.3rem; margin-bottom: 15px; outline: none; }
+        input:focus { border-color: var(--cyan); box-shadow: 0 0 15px rgba(0, 243, 255, 0.3); }
+        .game-card { flex: 1; background: #0a0a0c; padding: 20px; border-radius: 25px; text-align: center; border: 2px solid #1a1a1c; cursor: pointer; }
+        .game-card.active { border-color: var(--cyan); background: rgba(0, 243, 255, 0.05); }
+        .tab-bar { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 15px; }
+        .tab { padding: 12px 20px; background: #0f0f11; border-radius: 50px; font-size: 10px; font-weight: 900; color: #555; border: 1px solid #1a1a1c; white-space: nowrap; }
+        .tab.active { background: var(--cyan); color: #000; border-color: var(--cyan); }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .card { background: var(--panel); border: 1px solid #1a1a1c; border-radius: 20px; padding: 25px 10px; text-align: center; }
+        .card.selected { border-color: var(--cyan); background: rgba(0, 243, 255, 0.08); }
+        .btn { width: 100%; padding: 18px; border-radius: 16px; border: none; font-weight: 900; font-family: 'Orbitron'; cursor: pointer; text-transform: uppercase; }
+        .btn-pay { background: var(--green); color: #000; margin-top: 25px; }
+
+        #modal { position: fixed; inset: 0; background: rgba(0,0,0,0.98); display: none; align-items: center; justify-content: center; padding: 20px; z-index: 2000; }
+        .m-box { background: #000; border: 1px solid var(--cyan); padding: 35px; border-radius: 40px; text-align: center; }
+        #splash { position: fixed; inset: 0; background: #000; z-index: 3000; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    </style>
+</head>
+<body>
+
+    <div id="splash">
+        <img src="https://i.ibb.co/Q7yshC8N/IMG-20260215-WA0014.jpg" style="width:140px; height:140px; border-radius:32px; border:2px solid var(--cyan); margin-bottom:25px;">
+        <h1 style="font-family:'Orbitron'; font-size:1.8rem; color:var(--cyan);">INFAMOUS</h1>
+        <button class="btn" style="width:220px; background:var(--green); margin-top:40px;" onclick="enterApp()">OPEN STORE</button>
+    </div>
+
+    <div class="app" id="app">
+        <div class="welcome-hero">
+            <h2 class="welcome-text">INFAMOUS STORE</h2>
+            <p style="font-size: 10px; color: var(--cyan); font-weight: 900; margin-bottom: 15px; letter-spacing: 1px;">✓ VERIFIED GLOBAL SELLER</p>
+            <a href="https://chat.whatsapp.com/E2w25hGcoEMDU17aiIDKWu" class="whatsapp-join">JOIN WHATSAPP GROUP</a>
+        </div>
+
+        <div style="display:flex; gap:12px; margin-bottom:25px; padding: 0 20px;">
+            <div onclick="selectG('mlbb')" id="g-mlbb" class="game-card">
+                <img src="https://i.ibb.co/pBMHnh2H/78d66ff1ab1bd23f7fd6d9cdb93854881cb8f0b69e8a301faaf4f4eab058d19e-200.jpg" style="width:40px; border-radius:10px;">
+                <p style="font-size:10px; font-weight:900; margin-top:8px;">MLBB</p>
+            </div>
+            <div onclick="selectG('bgmi')" id="g-bgmi" class="game-card">
+                <img src="https://i.ibb.co/Y72fpzDn/bgmi-512x512-1641551242.jpg" style="width:40px; border-radius:10px;">
+                <p style="font-size:10px; font-weight:900; margin-top:8px;">BGMI</p>
+            </div>
+        </div>
+
+        <div id="ui-core" style="display:none; padding: 0 20px;">
+
+            <!-- ⚠️ POLICY WARNING -->
+            <p id="policy-text" style="
+                font-size:11px;
+                color:#ff1f57;
+                font-weight:900;
+                text-align:center;
+                margin-bottom:15px;
+                line-height:1.3;
+                display:none;">
+⚠️ IMPORTANT: Enter correct ID / SERVER ID.<br>
+❌ WRONG ID = NO DIAMONDS / NO REFUND
+            </p>
+
+            <div id="ml-fields" style="display:none;">
+                <input type="number" id="mid" placeholder="USER ID" inputmode="numeric">
+                <input type="number" id="mzid" placeholder="SERVER ID" inputmode="numeric">
+            </div>
+
+            <div id="bg-fields" style="display:none;">
+                <input type="number" id="bid" placeholder="CHARACTER ID" inputmode="numeric">
+            </div>
+            
+            <button class="btn" id="v-btn" style="background:transparent; border:1px solid var(--cyan); color:var(--cyan); font-size:11px; margin-bottom:15px;" onclick="verify()">VERIFY ACCOUNT</button>
+            <div id="nick-box" style="text-align:center; margin-bottom:20px; color:var(--green); font-weight:900; text-transform: uppercase;"></div>
+
+            <div class="tab-bar" id="ml-tabs" style="display:none;">
+                <div class="tab active" onclick="switchTab(this, 'diamonds')">💎 DIAMONDS</div>
+                <div class="tab" onclick="switchTab(this, 'weekly')">📅 WEEKLY</div>
+                <div class="tab" onclick="switchTab(this, 'premium')">⭐ PREMIUM</div>
+            </div>
+
+            <div class="grid" id="grid"></div>
+
+            <p class="feedback-title">LATEST CUSTOMER REVIEWS</p>
+            <div class="feedback-scroll">
+                <div class="review-card">
+                    <div class="rev-top"><span class="rev-name">Rahul_YT ✅</span><span class="rev-stars">★★★★★</span></div>
+                    <p class="rev-text">"Instantly received 706 diamonds. Best price in India fr!"</p>
+                </div>
+                <div class="review-card">
+                    <div class="rev-top"><span class="rev-name">Slayer_07 ✅</span><span class="rev-stars">★★★★★</span></div>
+                    <p class="rev-text">"Weekly pass was activated in just 2 minutes. Trustworthy."</p>
+                </div>
+                <div class="review-card">
+                    <div class="rev-top"><span class="rev-name">Vikram King ✅</span><span class="rev-stars">★★★★★</span></div>
+                    <p class="rev-text">"Best service for BGMI UC. No scam, 100% real store."</p>
+                </div>
+            </div>
+
+            <button class="btn btn-pay" onclick="checkout()">PROCEED TO PAY</button>
+        </div>
+    </div>
+
+    <div id="modal">
+        <div class="m-box">
+            <h1 id="m-price" style="font-family:'Orbitron'; font-size:3.5rem; color:var(--cyan);">₹0</h1>
+            <div style="background: #fff; padding: 15px; border-radius: 20px; width: 200px; margin: 15px auto; border: 4px solid var(--cyan);">
+                <img src="https://i.ibb.co/ym5RktLX/IMG-20260215-WA0000.jpg" style="width:100%;">
+            </div>
+            <input type="text" id="utr" placeholder="12-DIGIT UTR" style="text-align:center;">
+            <button class="btn btn-pay" onclick="finalize()">SUBMIT ORDER</button>
+            <p onclick="document.getElementById('modal').style.display='none'" style="margin-top:20px; font-size:12px; color:#555; cursor:pointer;">GO BACK</p>
+        </div>
+    </div>
+
+    <script>
+        let game = ''; let pack = null; let nick = "Unverified";
+        const DATA = {
+            mlbb: {
+                diamonds: [{n:"86 💎", p:85},{n:"172 💎", p:165},{n:"257 💎", p:250},{n:"344 💎", p:330},{n:"514 💎", p:490},{n:"706 💎", p:660},{n:"1050 💎", p:980}],
+                weekly: [{n:"Weekly Pass (1x)", p:160}, {n:"Weekly Pass (2x)", p:315}],
+                premium: [{n:"Starlight Pass", p:320}, {n:"Premium Pass", p:750}]
+            },
+            bgmi: [{n:"60 UC", p:75},{n:"325 UC", p:380},{n:"660 UC", p:750},{n:"1800 UC", p:1900}]
+        };
+
+        function enterApp() { document.getElementById('splash').style.display='none'; document.getElementById('app').style.display='block'; }
+
+        function selectG(g) {
+            game = g; pack = null;
+            document.getElementById('ui-core').style.display='block';
+            document.getElementById('policy-text').style.display='block'; // ⚠️ Show policy
+
+            document.getElementById('ml-fields').style.display=g==='mlbb'?'block':'none';
+            document.getElementById('bg-fields').style.display=g==='bgmi'?'block':'none';
+            document.getElementById('ml-tabs').style.display=g==='mlbb'?'flex':'none';
+            document.querySelectorAll('.game-card').forEach(el => el.classList.remove('active'));
+            document.getElementById('g-'+g).classList.add('active');
+            if(g==='mlbb') switchTab(document.querySelector('.tab'), 'diamonds');
+            else renderGrid(DATA.bgmi);
+        }
+
+        async function verify() {
+            const id = (game === 'mlbb') ? document.getElementById('mid').value : document.getElementById('bid').value;
+            const zone = document.getElementById('mzid').value;
+            if(!id) return alert("Enter ID!");
+            if(game==='mlbb') {
+                try {
+                    const r = await fetch(`https://api.isan.eu.org/nickname/ml?id=${id}&zone=${zone}`);
+                    const j = await r.json(); nick = j.name || "ID VALID ✅";
+                } catch(e) { nick = "ID LINKED ✅"; }
+            } else { nick = "BGMI VERIFIED ✅"; }
+            document.getElementById('nick-box').innerText = nick;
+        }
+
+        function switchTab(el, c) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            el.classList.add('active'); renderGrid(DATA.mlbb[c]);
+        }
+
+        function renderGrid(list) {
+            const container = document.getElementById('grid'); container.innerHTML = '';
+            list.forEach(item => {
+                const div = document.createElement('div'); div.className = 'card';
+                div.innerHTML = `<span style="font-size:10px; color:#555; font-weight:800;">${item.n}</span><b>₹${item.p}</b>`;
+                div.onclick = () => { document.querySelectorAll('.card').forEach(x => x.classList.remove('selected')); div.classList.add('selected'); pack = item; };
+                container.appendChild(div);
+            });
+        }
+
+        function checkout() {
+            if(!pack) return alert("Select pack!");
+            const confirmPolicy = confirm(
+                "⚠️ IMPORTANT POLICY\n\n" +
+                "If you enter WRONG ID or SERVER ID:\n" +
+                "- Diamonds / UC will NOT be added\n" +
+                "- NO REFUND will be given\n\n" +
+                "Do you agree and want to continue?"
+            );
+            if(!confirmPolicy) return;
+            document.getElementById('m-price').innerText = "₹"+pack.p;
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function finalize() {
+            const utr = document.getElementById('utr').value; if(utr.length < 10) return alert("Enter UTR!");
+            const target = (game==='mlbb') ? document.getElementById('mid').value + "(" + document.getElementById('mzid').value + ")" : document.getElementById('bid').value;
+            const text = `*ORDER*%0A*Game:* ${game.toUpperCase()}%0A*ID:* ${target}%0A*Nick:* ${nick}%0A*Item:* ${pack.n}%0A*Price:* ₹${pack.p}%0A*UTR:* ${utr}`;
+            window.open(`https://wa.me/918731963808?text=${text}`);
+        }
+    </script>
+</body>
+          </html>
